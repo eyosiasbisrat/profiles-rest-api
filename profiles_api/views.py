@@ -1,11 +1,4 @@
-"""from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from profiles_api import serializers
-from rest_framework import viewsets
-from profiles_api import models
-from rest_framework.authenthication import TokenAuthentication
-from profiles_api import permissions"""
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -123,4 +116,9 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.UpdateOwnProfile,)
     """configures our UserProgileView set to use tokenauthenthication and then add permission
     """
+
+    filter_backends = (filters.SearchFilter,)
+    """we can have multiples filter back ends.comes with django rest"""
+    search_fields = ('name', 'email',)
+    """tells the filter backend which fields we will be searching with"""
     
