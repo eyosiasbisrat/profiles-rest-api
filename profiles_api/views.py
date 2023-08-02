@@ -114,6 +114,7 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     """created as a tupele"""
     permission_classes = (permissions.UpdateOwnProfile,)
+    
     """configures our UserProgileView set to use tokenauthenthication and then add permission
     """
 
@@ -122,3 +123,9 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     search_fields = ('name', 'email',)
     """tells the filter backend which fields we will be searching with"""
     
+class UserLoginApiView(ObtainAuthToken):
+    """takes care of authenthiation tokens.ObtainAuthToken proovided by django rest_framework.It doesnt enable it self
+    in the admin site.Thus we need to customize it"""
+
+    renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
+
